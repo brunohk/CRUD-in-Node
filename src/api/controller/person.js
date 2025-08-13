@@ -8,6 +8,11 @@ class PersonController {
         const user =  await this.personService.getUserById(userId)
         return user
     }
+
+    async getUsers(_, __) {
+        const user =  await this.personService.getUsers()
+        return user
+    }
 }
 
 export default PersonController

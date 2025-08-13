@@ -21,6 +21,16 @@ app.get('/user/:id', async (req, res) => {
   res.send(user)
 })
 
+app.get('/users', async (req, res) => {
+  const user = await personController.getUsers(req, res)
+  
+  if (user.length === 0) {
+    return res.status(404).send({error: `User not found`})
+  }
+
+  res.send(user)
+})
+
 app.listen(3000, async () => {
   console.log("API Started!!! Porta: " + 3000)
 
