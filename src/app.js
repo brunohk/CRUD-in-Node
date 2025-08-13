@@ -1,9 +1,25 @@
 import express from 'express'
 import { Sequelize } from 'sequelize'
 import config from './config/index.js'
+import PersonController from './api/controller/person.js'
+import PersonService from './api/service/person.js'
+import PersonModel from './api/model/person.js'
 
 const app = express()
 const sequelize = new Sequelize('pd', 'kunieda', '', config.development.postgres.options)
+const personService = new PersonService()
+const personController = new PersonController(personService)
+PersonModel.init(sequelize)
+
+app.get('/user/:id', async (req, res) => {
+  const user = await personController.getUserById(req, res)
+  
+  if (!user) {
+    return res.status(404).send({error: `User not found`})
+  }
+
+  res.send(user)
+})
 
 app.listen(3000, async () => {
   console.log("API Started!!! Porta: " + 3000)
