@@ -8,19 +8,19 @@ class PersonService {
             state: body.state,
             city: body.city,
             token: body.token
-        })
-        return personModel
+        });
+        return personModel;
     }
 
     async getUserById(id) {
-        let personModel = await person.findByPk(id)
-        return personModel
+        const personModel = await person.findByPk(id);
+        return personModel;
     }
 
     async getUsers() {
-        let personModel = await person.findAll({})
-        return personModel
+        const personModel = await person.findAll({});
+        return personModel;
     }
 }
 
-export default PersonService
+export default PersonService;

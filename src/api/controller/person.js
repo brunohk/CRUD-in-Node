@@ -1,6 +1,6 @@
 class PersonController {
     constructor(personService) {
-        this.personService = personService
+        this.personService = personService;
     }
 
     async saveUser(req) {
@@ -9,15 +9,15 @@ class PersonController {
     }
 
     async getUserById(req, _) {
-        const userId = req.params.id
-        const user =  await this.personService.getUserById(userId)
-        return user
+        const userId = req.params.id;
+        const user =  await this.personService.getUserById(userId);
+        return user;
     }
 
     async getUsers(_, __) {
-        const user =  await this.personService.getUsers()
-        return user
+        const user =  await this.personService.getUsers();
+        return user;
     }
 }
 
-export default PersonController
+export default PersonController;
