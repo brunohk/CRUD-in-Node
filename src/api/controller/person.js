@@ -3,6 +3,11 @@ class PersonController {
         this.personService = personService
     }
 
+    async saveUser(req) {
+        const user = await this.personService.saveUser(req.body);
+        return user;
+    }
+
     async getUserById(req, _) {
         const userId = req.params.id
         const user =  await this.personService.getUserById(userId)

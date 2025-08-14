@@ -11,6 +11,18 @@ const personService = new PersonService()
 const personController = new PersonController(personService)
 PersonModel.init(sequelize)
 
+app.use(express.json());
+
+app.post('/user', async (req, res) => {
+  try {
+    const user = await personController.saveUser(req);
+    res.status(201).send(user);
+  } catch (err) {
+    console.error('Error saving user:', err);
+    res.status(500).json({ message: 'Something went wrong' });
+  }
+})
+
 app.get('/user/:id', async (req, res) => {
   const user = await personController.getUserById(req, res)
   
