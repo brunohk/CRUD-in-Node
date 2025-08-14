@@ -61,6 +61,23 @@ app.delete('/user/:id', async (req, res) => {
   }
 })
 
+app.put('/user/:id', async (req, res) => {
+  try {
+    const { userUpdatedCount, user } = await personController.updateUserById(req);
+    if (userUpdatedCount === 0) {
+      return res.status(404).json({ message: "Register not found to update" })
+    }
+
+    res.status(200).send(user)
+  }  catch (error) {
+    console.error('Error updating user:', error.message);
+    res.status(500).json({ 
+      message: 'Something went wrong',
+      error: error.message
+    });
+  }
+})
+
 app.listen(3000, async () => {
   console.log("API Started!!! Port: " + 3000);
 

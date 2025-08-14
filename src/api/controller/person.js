@@ -24,6 +24,12 @@ class PersonController {
         const deleteCount = await this.personService.deleteUserById(userId);
         return deleteCount;
     }
+
+    async updateUserById(req) {
+        const userId = req.params.id;
+        const body = req.body;
+        return await this.personService.updateUserById(body, userId) 
+    }
 }
 
 export default PersonController;
