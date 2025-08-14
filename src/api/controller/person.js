@@ -18,6 +18,12 @@ class PersonController {
         const user =  await this.personService.getUsers();
         return user;
     }
+
+    async deleteUserById(req) {
+        const userId = req.params.id;
+        const deleteCount = await this.personService.deleteUserById(userId);
+        return deleteCount;
+    }
 }
 
 export default PersonController;

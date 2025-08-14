@@ -21,6 +21,11 @@ class PersonService {
         const personModel = await person.findAll({});
         return personModel;
     }
+
+    async deleteUserById(userId) {
+        const deleteCount = await person.destroy({where: { id: userId }})
+        return deleteCount
+    }
 }
 
 export default PersonService;
